@@ -1,0 +1,5 @@
+name: drupal-expert-agent
+version: 1.0.0
+description: Drupal coding standards, security rules, caching patterns, and best practices for AI agents
+author: Ozmodiar
+license: MIT
