@@ -20,12 +20,23 @@ applyTo: "**/*.php"
 
 ### Overrides
 
-✅ Correct:
+> `#[\Override]` requires PHP 8.3+. Omit it if the project runs on an earlier PHP version.
+
+✅ Correct (PHP 8.3+):
 
     /**
      * {@inheritdoc}
      */
     #[\Override]
+    public function build(): array {
+      return [];
+    }
+
+✅ Correct (PHP < 8.3):
+
+    /**
+     * {@inheritdoc}
+     */
     public function build(): array {
       return [];
     }
@@ -121,7 +132,7 @@ applyTo: "**/*.php"
 
 ### Hooks (Attributes vs Procedural)
 
-✅ Preferred:
+✅ Preferred (Drupal 11+ only):
 
     // In src/Hook/MyModuleHooks.php
     namespace Drupal\mymodule\Hook;
@@ -137,9 +148,9 @@ applyTo: "**/*.php"
 
     }
 
-> OOP hook classes live in `src/Hook/` of the module.
+> OOP hook classes live in `src/Hook/` of the module. Hook attributes are **not available in Drupal 10**.
 
-❌ Only when necessary:
+✅ Required for Drupal 10, acceptable in Drupal 11:
 
     function mymodule_cron() {
       // Logic.

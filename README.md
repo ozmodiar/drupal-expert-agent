@@ -1,6 +1,6 @@
 # Drupal Expert Agent
 
-AI agent configuration for Drupal 11 projects — coding standards, security rules, caching patterns, and best practices.
+AI agent configuration for Drupal 10.3+ projects — coding standards, security rules, caching patterns, and best practices.
 
 ## What's included
 
@@ -14,9 +14,9 @@ AI agent configuration for Drupal 11 projects — coding standards, security rul
 
 ## Stack
 
-- Drupal 11
-- PHP 8.3+
-- Drush 13
+- Drupal 10.3+ / 11
+- PHP 8.1+ (PHP 8.3+ recommended)
+- Drush 12 / 13
 - DDEV
 
 ## Installation

@@ -1,5 +1,5 @@
 ---
-description: "Drupal 11 project guidelines, anti-patterns, and best practices. Always loaded for any Drupal project."
+description: "Drupal 10.3+ project guidelines, anti-patterns, and best practices. Always loaded for any Drupal project."
 applyTo: "**"
 ---
 
@@ -7,9 +7,9 @@ applyTo: "**"
 
 ## Technology Stack
 
-- Drupal 11
-- PHP 8.3+
-- Drush 13
+- Drupal 10.3+ / 11
+- PHP 8.1+ (PHP 8.3+ recommended)
+- Drush 12 / 13
 - DDEV
 
 ## Build & Tools
