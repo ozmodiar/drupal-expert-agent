@@ -269,11 +269,46 @@ Key concepts:
 - **Cache tags**: what the output depends on (e.g., `node:42`, `config:system.site`).
 - **Max-age**: how long the output is valid (`0` = uncacheable, `-1` = permanent).
 
+Common cache tag patterns:
+- `node:123` — specific node.
+- `node_list` — any node list (invalidated when nodes are added/removed).
+- `user:456` — specific user.
+- `config:mymodule.settings` — specific configuration object.
+- `taxonomy_term:789` — specific term.
+- `taxonomy_term_list` — any term list.
+
 When assembling `AccessResult` or other cacheable objects, always use `addCacheableDependency()` to merge dependencies:
 
     $build = [];
     $renderer = \Drupal::service('renderer');
     $renderer->addCacheableDependency($build, $entity);
+
+---
+
+## Translation
+
+Every user-facing string must go through Drupal's translation API.
+
+- Use `$this->t()` in classes that extend a Drupal base class or use `StringTranslationTrait`.
+- Use `new TranslatableMarkup()` in plugin attributes.
+- Use `t()` only in procedural code (`.module` files).
+
+Placeholder types:
+- `@variable` — sanitized text.
+- `%variable` — sanitized and wrapped in `<em>`.
+- `:variable` — URL (sanitized).
+
+✅ Correct:
+
+    $this->t('Hello @name', ['@name' => $name]);
+    $this->t('Visit :url for details.', [':url' => $url]);
+
+❌ Wrong:
+
+    return ['#markup' => 'Welcome back'];
+    return ['#markup' => $this->t("Hello $name")];
+
+> Add `use StringTranslationTrait;` to service classes that need `$this->t()` without extending a base class.
 
 ---
 
@@ -285,6 +320,23 @@ When assembling `AccessResult` or other cacheable objects, always use `addCachea
 
     $value = $request->get('id');
     $id = (int) $value;
+
+---
+
+### Database Queries
+
+Always use the database abstraction layer. Never concatenate user input into SQL.
+
+✅ Correct:
+
+    $query = $this->database->select('node_field_data', 'n');
+    $query->fields('n', ['nid', 'title']);
+    $query->condition('n.type', $type);
+    $results = $query->execute();
+
+❌ Never:
+
+    $this->database->query("SELECT * FROM node WHERE type = '$type'");
 
 ---
 
@@ -323,3 +375,21 @@ When assembling `AccessResult` or other cacheable objects, always use `addCachea
     if (!$entity->access('view')) {
       throw new AccessDeniedHttpException();
     }
+
+---
+
+## Deprecated APIs
+
+Do not use these. Use the modern replacements.
+
+| Deprecated | Replacement |
+|---|---|
+| `drupal_set_message()` | `\Drupal::messenger()->addMessage()` |
+| `entity_load()` | `\Drupal::entityTypeManager()->getStorage()->load()` |
+| `db_select()` / `db_query()` | Inject `database` service |
+| `format_date()` | Inject `date.formatter` service |
+| `drupal_render()` | Inject `renderer` service |
+| `\Drupal::l()` | `Link::fromTextAndUrl()` |
+| `\Drupal::url()` | `Url::fromRoute()->toString()` |
+
+Run `./vendor/bin/drupal-check modules/custom/` or `phpstan` to detect deprecations automatically.

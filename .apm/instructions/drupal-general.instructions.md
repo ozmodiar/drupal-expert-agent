@@ -16,9 +16,25 @@ applyTo: "**"
 
 - Use `ddev composer` for all Composer operations.
 - Never edit `composer.lock` manually.
+- Use `ddev drush generate` to scaffold modules, controllers, forms, plugins, and services instead of creating files by hand.
+- Use `ddev drush field:create` for adding fields to content types.
+- Run `ddev drush cex -y` after making configuration changes via CLI.
+
+## Pre-Commit Checks
+
+Run these locally before committing:
+
+    ddev exec ./vendor/bin/phpcs -p --colors modules/custom/
+    ddev exec ./vendor/bin/phpstan analyze modules/custom/
+    ddev exec ./vendor/bin/drupal-check modules/custom/
+
+Use `phpcbf` to auto-fix coding standard violations:
+
+    ddev exec ./vendor/bin/phpcbf modules/custom/
 
 ## Best Practices
 
+- Before implementing functionality, check if a contrib module or Drupal Recipe (10.3+) already solves it.
 - Prefer existing services over creating new ones.
 - Prefer existing patterns in the codebase over introducing new ones.
 - Do not introduce new patterns unless they already exist in the codebase.
@@ -48,6 +64,37 @@ Avoid these unless explicitly required:
 - Composer: https://getcomposer.org/doc/
 - Drupal user guide: https://www.drupal.org/docs/user_guide/en/index.html
 - Drupal developer docs: https://www.drupal.org/docs/develop
+
+## Module Directory Structure
+
+Canonical layout for a custom module:
+
+    my_module/
+    ├── my_module.info.yml
+    ├── my_module.module             # Procedural hooks only (keep thin)
+    ├── my_module.services.yml
+    ├── my_module.routing.yml
+    ├── my_module.permissions.yml
+    ├── my_module.libraries.yml
+    ├── config/
+    │   ├── install/                 # Default config
+    │   ├── optional/                # Optional config (extra dependencies)
+    │   └── schema/                  # Config schema (required for custom config)
+    ├── src/
+    │   ├── Controller/
+    │   ├── Form/
+    │   ├── Plugin/
+    │   │   ├── Block/
+    │   │   └── Field/
+    │   ├── Service/
+    │   ├── EventSubscriber/
+    │   └── Hook/                    # OOP hooks (Drupal 11+)
+    ├── templates/                   # Twig templates
+    └── tests/
+        └── src/
+            ├── Unit/
+            ├── Kernel/
+            └── Functional/
 
 ## Final Advice
 
