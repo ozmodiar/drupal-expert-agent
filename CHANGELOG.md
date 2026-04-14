@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.3.0] — 2026-04-14
+
+### Added
+
+- `drupal-a11y.instructions.md` — WCAG 2.2 AA accessibility standards for templates and CSS: keyboard/focus, contrast, forms, graphics, navigation, reflow, forced colors, verification checklist.
+- `drupal-sdc.instructions.md` — Single Directory Components conventions: file structure, component.yml schema, props, slots, template standards.
+- `drupal-sdc` skill — scaffolding procedure for new SDC components with component.yml template and Twig pattern references.
+
+**drupal-twig.instructions.md**
+- Drupal Twig functions and filters: `url()`, `path()`, `create_attribute()`, `link()`, `|default()`.
+- Accessibility section with pointer to full a11y standards.
+
+**drupal-general.instructions.md**
+- Translation file (.po) workflow: file naming, placement, info.yml keys, PO file headers.
+
 ## [1.2.0] — 2026-04-11
 
 ### Added

@@ -65,6 +65,18 @@ Avoid these unless explicitly required:
 - Drupal user guide: https://www.drupal.org/docs/user_guide/en/index.html
 - Drupal developer docs: https://www.drupal.org/docs/develop
 
+## Translation Files (.po)
+
+When adding or changing translatable strings, maintain corresponding `.po` files:
+
+- Translation source strings must always be in English.
+- Place `.po` files in `translations/` within the module or theme.
+- File naming: `{project}-{version}.{langcode}.po`.
+- Include `PO-Revision-Date`, `Language-Team`, and `Plural-Forms` headers.
+- Module/theme info files must include:
+  - `interface translation project: my_module`
+  - `interface translation server pattern: modules/custom/%project/translations/%project-%version.%language.po`
+
 ## Module Directory Structure
 
 Canonical layout for a custom module:

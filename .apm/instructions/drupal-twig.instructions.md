@@ -48,6 +48,24 @@ applyTo: "**/*.html.twig"
 
     {{ attach_library('mymodule/my-library') }}
 
+## Drupal Twig Functions and Filters
+
+- `{{ url('route_name') }}` — generate an absolute URL for a route.
+- `{{ path('route_name') }}` — generate a relative path for a route.
+- `{{ create_attribute() }}` — build HTML attributes safely.
+- `{{ link(text, url) }}` — generate an anchor element.
+- `|default('value')` — provide fallback for optional variables:
+
+    {% set variant = variant|default('primary') %}
+
+## Accessibility
+
+- Use semantic HTML elements (`<nav>`, `<main>`, `<article>`, `<section>`, `<button>`).
+- Maintain heading hierarchy (`<h1>`–`<h6>`); do not skip levels.
+- Provide `alt` text for images; use `alt=""` for decorative images.
+- Add `aria-expanded`, `aria-controls`, `aria-live` where appropriate.
+- See `drupal-a11y.instructions.md` for full accessibility standards.
+
 ## Conditional Rendering
 
 - Use `content.field_name` (not `node.field_name`) to check if a field has output:

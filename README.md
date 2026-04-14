@@ -11,6 +11,14 @@ AI agent configuration for Drupal 10.3+ projects — coding standards, security 
 | `drupal-testing.instructions.md` | `**/tests/**` | PHPUnit testing conventions |
 | `drupal-twig.instructions.md` | `**/*.html.twig` | Twig template standards and XSS safety |
 | `drupal-yaml.instructions.md` | `**/*.routing.yml`, `**/*.services.yml`, etc. | Routing, services, links, and config schema |
+| `drupal-a11y.instructions.md` | `**/*.html.twig`, `**/components/**/*.twig`, `**/*.css` | WCAG 2.2 AA accessibility standards |
+| `drupal-sdc.instructions.md` | `**/*.component.yml`, `**/components/**/*.twig` | Single Directory Components conventions |
+
+### Skills
+
+| Skill | Description |
+|-------|-------------|
+| `drupal-sdc` | Scaffold a new SDC component (component.yml, Twig template, optional CSS/JS) |
 
 ## Stack
 
