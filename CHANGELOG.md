@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.3.1] — 2026-04-14
+
+### Fixed
+
+- `drupal-sdc` skill now verifies the project uses SDC before scaffolding. Stops and asks the user if no `components/` directory or `*.component.yml` files exist.
+
 ## [1.3.0] — 2026-04-14
 
 ### Added

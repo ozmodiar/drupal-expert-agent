@@ -16,11 +16,13 @@ Scaffold a new Drupal Single Directory Component following Drupal conventions.
 
 ## Procedure
 
-1. **Gather requirements**: Ask for the component name (kebab-case), purpose, props, and whether it needs CSS or JavaScript.
+1. **Verify SDC is used in the project**: Search for an existing `components/` directory in the theme(s) or for `*.component.yml` files. If none exist, **stop** — the project uses traditional Drupal theming. Ask the user before proceeding.
 
-2. **Check existing components**: Search the theme's `components/` directory for similar components to extend or reference. Follow existing naming and structural patterns.
+2. **Gather requirements**: Ask for the component name (kebab-case), purpose, props, and whether it needs CSS or JavaScript.
 
-3. **Create the component directory**: `components/<name>/`
+3. **Check existing components**: Search the theme's `components/` directory for similar components to extend or reference. Follow existing naming and structural patterns.
+
+4. **Create the component directory**: `components/<name>/`
 
 4. **Create component.yml** — metadata and props schema:
    - Reference: [component.yml template](./references/component-yml-template.md)
